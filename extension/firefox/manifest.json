@@ -3,7 +3,6 @@
     "description" : "2ch top threads",
     "version": "1.0.1",
     "background": {
-    "persistent": true,
     "scripts": ["bg.js"]
     },
     "permissions": ["tabs", "activeTab", "https://*/*"],
