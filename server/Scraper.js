@@ -84,7 +84,7 @@ var res = await page.evaluate((allResultsSelector) => {
   await browser.close();
 };
 
-setInterval(Scrape, 5000)
+setInterval(Scrape, 15000)
 
 app.get('/top', function(req, res, next) {
 
