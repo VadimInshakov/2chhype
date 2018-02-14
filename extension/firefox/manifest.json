@@ -1,0 +1,14 @@
+{
+    "name": "2CH HYPE",
+    "description" : "2ch top threads",
+    "version": "1.0.1",
+    "background": {
+    "persistent": true,
+    "scripts": ["bg.js"]
+    },
+    "permissions": ["tabs", "activeTab", "https://*/*"],
+    "browser_action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    }
+  }
