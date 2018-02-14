@@ -1,7 +1,7 @@
 Расширение, которое отображает топ тредов с 2ch
 
 Разделы репозитория:                                              
-__extension__ - код расширения 
+__extension__ - код расширения                                                   
 __extension/chrome__ - версия для Chrome            
 __extension/firefox__ - версия для Firefox
 
