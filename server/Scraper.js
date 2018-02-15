@@ -19,14 +19,16 @@ var topSchema = new Schema({
     link: String,
 });
 
-var Top = mongoose.model('top', topSchema);
+var Topb = mongoose.model('topb', topSchema);
+var Toppo = mongoose.model('toppo', topSchema);
+var Toppr = mongoose.model('toppr', topSchema);
 mongoose.Promise = global.Promise;
 mongoose.connect(urlmongo);
 
-async function Scrape(){
+async function Scrape(top, board){
   const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
   const page = await browser.newPage();
-  await page.goto('https://2ch.hk/b/');
+  await page.goto('https://2ch.hk/' + board + '/');
   await page.waitForSelector('.boardstats-row');
   // Extract the results from the page
 var res = await page.evaluate((allResultsSelector) => {
@@ -43,13 +45,13 @@ var res = await page.evaluate((allResultsSelector) => {
    arr = [];
   //load to MongoDB
   var countOf
-     Top.count({}).exec() 
+     top.count({}).exec() 
   .then((count)=>{
     countOfItems = count; 
 
     // first insertion
     if (countOfItems == 0) {
-         var newTop = new Top(res);
+         var newTop = new top(res);
         newTop.save()
         // clear arrays for memory safety
         res = []
@@ -59,9 +61,9 @@ var res = await page.evaluate((allResultsSelector) => {
        if (countOfItems > 15){
           var delta = countOfItems - 10;
           for (let i=0; i<delta; i++){
-            Top.find().exec()
+            top.find().exec()
              .then((result)=>{
-                Top.find({title: result[i].title}).remove().exec();
+                top.find({title: result[i].title}).remove().exec();
               })
          }                
        }
@@ -69,7 +71,7 @@ var res = await page.evaluate((allResultsSelector) => {
           if (res[i].title !== undefined){
             
             // if value not exists in database, insert it   
-            Top.findOneAndUpdate({title: res[i].title}, res[i], { upsert: true }).exec()
+            top.findOneAndUpdate({title: res[i].title}, res[i], { upsert: true }).exec()
             .then(()=>{
               // clear arrays for memory safety
               res = []
@@ -84,18 +86,38 @@ var res = await page.evaluate((allResultsSelector) => {
   await browser.close();
 };
 
-setInterval(Scrape, 15000)
+setInterval(Scrape.bind(null, Topb, 'b'), 15000);
+setInterval(Scrape.bind(null, Toppo, 'po'), 25000);
+setInterval(Scrape.bind(null, Toppr, 'pr'), 25000);
 
-app.get('/top', function(req, res, next) {
+app.get('/topb', function(req, res, next) {
 
-  Top.find().exec()
+  Topb.find().exec()
    .then((result)=>{
-      result = JSON.stringify(result.slice(0, 16));
-      res.json(result);
+      resultb = JSON.stringify(result.slice(0, 16));
+      res.json(resultb);
     })
-   .catch((err)=>console.log(err))
+   .catch((err)=>console.log(err))                          
+});
 
-                          
+app.get('/toppo', function(req, res, next) {
+
+  Toppo.find().exec()
+   .then((result)=>{
+      resultpo = JSON.stringify(result.slice(0, 16));
+      res.json(resultpo);
+    })
+   .catch((err)=>console.log(err))                    
+});
+
+app.get('/toppr', function(req, res, next) {
+
+  Toppr.find().exec()
+   .then((result)=>{
+      resultpr = JSON.stringify(result.slice(0, 16));
+      res.json(resultpr);
+    })
+   .catch((err)=>console.log(err))                    
 });
 
 app.listen(process.env.PORT || 8081).timeout=150000;
