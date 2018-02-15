@@ -1,13 +1,30 @@
 browser.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-  
-    var xhr = new XMLHttpRequest();
+    if (request.board === 'b'){
+        var xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "https://still-cove-13917.herokuapp.com/top", false);
-    xhr.send();
+        xhr.open("GET", "https://still-cove-13917.herokuapp.com/topb", false);
+        xhr.send();
 
-    var res = xhr.responseText;
-  	sendResponse(JSON.parse(res));
+        var resb = xhr.responseText;
+  	    sendResponse(JSON.parse(resb));
+    } else if (request.board === 'po'){
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "https://still-cove-13917.herokuapp.com/toppo", false);
+        xhr.send();
+
+        var respo = xhr.responseText;
+  	    sendResponse(JSON.parse(respo));
+    } else if (request.board === 'pr'){
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "https://still-cove-13917.herokuapp.com/toppr", false);
+        xhr.send();
+
+        var resppr = xhr.responseText;
+  	    sendResponse(JSON.parse(resppr));
+    }
  
   return true;
 })
