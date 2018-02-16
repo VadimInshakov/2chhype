@@ -128,7 +128,7 @@ app.get('/toppr', function(req, res, next) {
 
 app.get('/topnews', function(req, res, next) {
 
-  Toppr.find().exec()
+  Topnews.find().exec()
    .then((result)=>{
       resultnews = JSON.stringify(result.slice(0, 10));
       res.json(resultnews);
@@ -138,7 +138,7 @@ app.get('/topnews', function(req, res, next) {
 
 app.get('/topvg', function(req, res, next) {
 
-  Toppr.find().exec()
+  Topvg.find().exec()
    .then((result)=>{
       resultvg = JSON.stringify(result.slice(0, 10));
       res.json(resultvg);
@@ -148,7 +148,7 @@ app.get('/topvg', function(req, res, next) {
 
 app.get('/topa', function(req, res, next) {
 
-  Toppr.find().exec()
+  Topa.find().exec()
    .then((result)=>{
       resulta = JSON.stringify(result.slice(0, 10));
       res.json(resulta);
