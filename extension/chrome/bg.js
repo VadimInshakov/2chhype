@@ -24,6 +24,30 @@ chrome.runtime.onMessage.addListener(
 
         var resppr = xhr.responseText;
   	    sendResponse(JSON.parse(resppr));
+    } else if (request.board === 'news'){
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "https://still-cove-13917.herokuapp.com/topnews", false);
+        xhr.send();
+
+        var respnews = xhr.responseText;
+        sendResponse(JSON.parse(respnews));
+    } else if (request.board === 'vg'){
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "https://still-cove-13917.herokuapp.com/topvg", false);
+        xhr.send();
+
+        var respvg = xhr.responseText;
+        sendResponse(JSON.parse(respvg));
+    } else if (request.board === 'a'){
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "https://still-cove-13917.herokuapp.com/topa", false);
+        xhr.send();
+
+        var respa = xhr.responseText;
+        sendResponse(JSON.parse(respa));
     }
  
   return true;
