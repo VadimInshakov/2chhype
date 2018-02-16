@@ -92,9 +92,9 @@ var res = await page.evaluate((allResultsSelector) => {
 setInterval(Scrape.bind(null, Topb, 'b'), 15000);
 setInterval(Scrape.bind(null, Toppo, 'po'), 20000);
 setInterval(Scrape.bind(null, Topnews, 'pr'), 25000);
-setInterval(Scrape.bind(null, Toppr, 'pr'), 29000);
-setInterval(Scrape.bind(null, Topvg, 'pr'), 33000);
-setInterval(Scrape.bind(null, Topa, 'pr'), 38000);
+setInterval(Scrape.bind(null, Toppr, 'pr'), 30000);
+setInterval(Scrape.bind(null, Topvg, 'pr'), 35000);
+setInterval(Scrape.bind(null, Topa, 'pr'), 40000);
 
 app.get('/topb', function(req, res, next) {
 
@@ -140,7 +140,7 @@ app.get('/topvg', function(req, res, next) {
 
   Toppr.find().exec()
    .then((result)=>{
-      resultvg = JSON.stringify(result.slice(0, 16));
+      resultvg = JSON.stringify(result.slice(0, 10));
       res.json(resultvg);
     })
    .catch((err)=>console.log(err))                    
@@ -150,7 +150,7 @@ app.get('/topa', function(req, res, next) {
 
   Toppr.find().exec()
    .then((result)=>{
-      resulta = JSON.stringify(result.slice(0, 16));
+      resulta = JSON.stringify(result.slice(0, 10));
       res.json(resulta);
     })
    .catch((err)=>console.log(err))                    
