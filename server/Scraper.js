@@ -91,10 +91,10 @@ var res = await page.evaluate((allResultsSelector) => {
 
 setInterval(Scrape.bind(null, Topb, 'b'), 15000);
 setInterval(Scrape.bind(null, Toppo, 'po'), 20000);
-setInterval(Scrape.bind(null, Topnews, 'pr'), 25000);
+setInterval(Scrape.bind(null, Topnews, 'news'), 25000);
 setInterval(Scrape.bind(null, Toppr, 'pr'), 30000);
-setInterval(Scrape.bind(null, Topvg, 'pr'), 35000);
-setInterval(Scrape.bind(null, Topa, 'pr'), 40000);
+setInterval(Scrape.bind(null, Topvg, 'vg'), 35000);
+setInterval(Scrape.bind(null, Topa, 'a'), 40000);
 
 app.get('/topb', function(req, res, next) {
 
