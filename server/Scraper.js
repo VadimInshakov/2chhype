@@ -100,7 +100,7 @@ app.get('/topb', function(req, res, next) {
 
   Topb.find().exec()
    .then((result)=>{
-      resultb = JSON.stringify(result.slice(0, 16));
+      resultb = JSON.stringify(result.slice(0, 10));
       res.json(resultb);
     })
    .catch((err)=>console.log(err))                          
@@ -110,7 +110,7 @@ app.get('/toppo', function(req, res, next) {
 
   Toppo.find().exec()
    .then((result)=>{
-      resultpo = JSON.stringify(result.slice(0, 16));
+      resultpo = JSON.stringify(result.slice(0, 10));
       res.json(resultpo);
     })
    .catch((err)=>console.log(err))                    
@@ -120,7 +120,7 @@ app.get('/toppr', function(req, res, next) {
 
   Toppr.find().exec()
    .then((result)=>{
-      resultpr = JSON.stringify(result.slice(0, 16));
+      resultpr = JSON.stringify(result.slice(0, 10));
       res.json(resultpr);
     })
    .catch((err)=>console.log(err))                    
@@ -130,7 +130,7 @@ app.get('/topnews', function(req, res, next) {
 
   Toppr.find().exec()
    .then((result)=>{
-      resultnews = JSON.stringify(result.slice(0, 16));
+      resultnews = JSON.stringify(result.slice(0, 10));
       res.json(resultnews);
     })
    .catch((err)=>console.log(err))                    
