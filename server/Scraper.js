@@ -87,14 +87,19 @@ var res = await page.evaluate((allResultsSelector) => {
   
 
   await browser.close();
+  return 0;
 };
 
-setInterval(Scrape.bind(null, Topb, 'b'), 15000);
-setInterval(Scrape.bind(null, Toppo, 'po'), 20000);
-setInterval(Scrape.bind(null, Topnews, 'news'), 25000);
-setInterval(Scrape.bind(null, Toppr, 'pr'), 30000);
-setInterval(Scrape.bind(null, Topvg, 'vg'), 35000);
-setInterval(Scrape.bind(null, Topa, 'a'), 40000);
+async function Starter(){
+   await Scrape(Topb, 'b');
+   await Scrape(Toppo, 'po');
+   await Scrape(Topnews, 'news');
+   await Scrape(Toppr, 'pr');
+   await Scrape(Topvg, 'vg');
+   await Scrape(Topa, 'a');
+}
+
+setInterval(Starter, 15000);
 
 app.get('/topb', function(req, res, next) {
 
