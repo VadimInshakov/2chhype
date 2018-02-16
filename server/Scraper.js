@@ -29,7 +29,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(urlmongo);
 
 async function Scrape(top, board){
-  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']});
   const page = await browser.newPage();
   await page.goto('https://2ch.hk/' + board + '/');
   await page.waitForSelector('.boardstats-row');
